@@ -1,0 +1,17 @@
+{
+  // Required
+  "name": "Content bookmark",
+  "version": "0.0.1",
+
+  // Recommended
+  "description": "Add part of page to bookmark",
+  "icons": { "16": "icon16.png" },
+  "default_locale": "ru",
+
+  // Pick one (or none)
+  "browser_action": {
+    "default_icon": "icon16.png", // optional
+    "default_title": "My my",      // optional; shown in tooltip
+    "default_popup": "bpage.html"        // optional
+  }
+}
