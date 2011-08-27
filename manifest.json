@@ -1,21 +1,22 @@
 ﻿{
-  // Required
-  "name": "Content bookmark",
-  "version": "1.0.0",
+	"name": "Content bookmark",
+	"version": "1.0.0",
 
-  // Recommended
-  "description": "Возможность создания закладок на содержимое web-страниц",
-  "icons": { 
+	"description": "Возможность создания закладок на содержимое web-страниц",
+
+	"permissions": ["contextMenus"],
+	"background_page": "html/background.html",
+
+	"icons": { 
 		"16" : "images/icon128.png",
 		"48" : "images/icon128.png",
 		"128" : "images/icon128.png"
 	},
-  "default_locale": "ru",
+	"default_locale": "ru",
 
-  // Pick one (or none)
-  "browser_action": {
-    "default_icon": "images/icon16.jpg", // optional
-    "default_title": "Content bookmark",      // optional; shown in tooltip
-    "default_popup": "html/page.html"        // optional
-  }
+	"browser_action": {
+		"default_icon": "images/icon16.jpg",
+		"default_title": "Content bookmark",
+		"default_popup": "html/page.html"
+	}
 }

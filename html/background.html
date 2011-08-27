@@ -1,0 +1,26 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<script>
+			/**
+			* Returns a handler which will open a new window when activated.
+			*/
+			function getClickHandler() {
+				return function(info, tab) {
+					alert("Content bookmark saved!!!");
+				};
+			};
+
+			/**
+			* Create a context menu which will only show up for images.
+			*/
+			chrome.contextMenus.create({
+				"title" : "Create content bookmark",
+				"type" : "normal",
+				"contexts" : ["selection"],
+				"onclick" : getClickHandler()
+			});
+		</script>
+	</body>
+</html>
