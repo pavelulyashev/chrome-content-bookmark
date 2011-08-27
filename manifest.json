@@ -8,15 +8,15 @@
 	"background_page": "html/background.html",
 
 	"icons": { 
-		"16" : "images/icon128.png",
-		"48" : "images/icon128.png",
-		"128" : "images/icon128.png"
+		"16":	"images/icon128.png",
+		"48":	"images/icon128.png",
+		"128":	"images/icon128.png"
 	},
 	"default_locale": "ru",
 
 	"browser_action": {
-        "default_icon": "images/icon16.jpg",      // optional
-        "default_title": "Content bookmark",      // optional; shown in tooltip
-        "default_popup": "html/popup.html"        // optional
-    }
+		"default_icon": "images/icon16.jpg",	// optional
+		"default_title": "Content bookmark",	// optional; shown in tooltip
+		"default_popup": "html/popup.html"		// optional
+	}
 }

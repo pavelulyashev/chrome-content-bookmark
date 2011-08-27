@@ -8,7 +8,10 @@
 			*/
 			function getClickHandler() {
 				return function(info, tab) {
-					alert("Content bookmark saved!!!");
+					alert("Content bookmark saved!!!\n"
+							+ "URL: " + info.pageUrl + "\n"
+							+ "Selected text: " + info.selectionText
+					);
 				};
 			};
 
