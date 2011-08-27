@@ -8,7 +8,7 @@
 	"background_page": "html/background.html",
 
 	"icons": { 
-		"16":	"images/icon128.png",
+		"16":	"images/icon128.png",	// this icon appears in context menu!
 		"48":	"images/icon128.png",
 		"128":	"images/icon128.png"
 	},

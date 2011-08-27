@@ -4,7 +4,7 @@
 	<body>
 		<script>
 			/**
-			* Returns a handler which will open a new window when activated.
+			* Returns a handler which will show an alert with information about click.
 			*/
 			function getClickHandler() {
 				return function(info, tab) {
@@ -16,7 +16,7 @@
 			};
 
 			/**
-			* Create a context menu which will only show up for images.
+			* Create a context menu which will only show up for selections.
 			*/
 			chrome.contextMenus.create({
 				"title" : "Create content bookmark",
