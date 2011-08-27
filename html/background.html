@@ -3,27 +3,30 @@
 	</head>
 	<body>
 		<script>
-			/**
-			* Returns a handler which will show an alert with information about click.
-			*/
-			function getClickHandler() {
-				return function(info, tab) {
-					alert("Content bookmark saved!!!\n"
-							+ "URL: " + info.pageUrl + "\n"
-							+ "Selected text: " + info.selectionText
-					);
-				};
-			};
+        /**
+        * Returns a handler which will show an alert with information about click.
+        */
+        function clickHandler(info, tab) {
+        	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
+        		// response.selectionInfo contains info about current selection
+            });
+        	/*
+            alert("Content bookmark saved!!!\n"
+                    + "URL: " + info.pageUrl + "\n"
+                    + "Selected text: " + info.selectionText
+            );
+            */
+        };
 
-			/**
-			* Create a context menu which will only show up for selections.
-			*/
-			chrome.contextMenus.create({
-				"title" : "Create content bookmark",
-				"type" : "normal",
-				"contexts" : ["selection"],
-				"onclick" : getClickHandler()
-			});
+        /**
+        * Create a context menu which will only show up for selections.
+        */
+        chrome.contextMenus.create({
+            "title" : "Create content bookmark",
+            "type" : "normal",
+            "contexts" : ["selection"],
+            "onclick" : clickHandler
+        });
 		</script>
 	</body>
 </html>
