@@ -3,26 +3,18 @@
 	</head>
 	<body>
 		<script>
-        /**
-         * Returns a handler which will show an alert with information about click.
-         */
-
         function clickHandler(info, tab) {
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
-        		localStorage.setItem('content_bookmark', response.rangeInfo);
-                alert(localStorage.getItem('content_bookmark'));
+        		localStorage[localStorage.length] = JSON.stringify({
+					url: info.pageUrl,
+					selection: response.rangeInfo
+				});
             });
-        	/*
-            alert("Content bookmark saved!!!\n"
-                    + "URL: " + info.pageUrl + "\n"
-                    + "Selected text: " + info.selectionText
-            );
-            */
         };
 
         /**
-        * Create a context menu which will only show up for selections.
-        */
+         * Create a context menu which will only show up for selections.
+         */
         chrome.contextMenus.create({
             "title" : "Create content bookmark",
             "type" : "normal",

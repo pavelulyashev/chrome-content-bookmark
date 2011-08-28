@@ -17,7 +17,14 @@
     </head>
     <body>
         <div>
-            <a href="#" onclick="return openBookmark();">Bookmark</a>
+			<script type="text/javascript" src="../js/utils.js" ></script>
+			<script>
+				setIconText(localStorage.length);
+				for (var i = 0; i < localStorage.length; i++) {
+					document.writeln("<p>" + i + " = " + localStorage[i] + "</p>");
+				}
+
+			</script>
         </div>
     </body>
 </html>
