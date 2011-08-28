@@ -5,16 +5,13 @@
 		<script>
         function clickHandler(info, tab) {
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
-        		/*
         		localStorage[localStorage.length] = JSON.stringify({
 					url: info.pageUrl,
 					selection: response.rangeInfo,
 					selectionText: info.selectionText,
 					title: tab.title
 				});
-				*/
-				localStorage.setItem('content_bookmark', response.rangeInfo);
-				//setIconText(localStorage.length);
+				setIconText(localStorage.length);
             });
         };
 
