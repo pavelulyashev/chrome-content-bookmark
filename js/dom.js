@@ -29,10 +29,13 @@ var actions = {
         return {rangeInfo: range.stringify(rng)};
     },
     highlightSelection: function(request) {
-        var rng = range.parse(request.rangeInfo);
-        console.log(rng);
+    	$(document).ready(function() {
+    	    alert(request.rangeInfo);
+            var rng = range.parse(request.rangeInfo);
+            console.log(rng);
 
-        highlight(rng, 'yellow');    
+            highlight(rng, 'yellow');    
+        });
     }
 };
 
