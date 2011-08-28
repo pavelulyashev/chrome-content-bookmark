@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
     <head>
@@ -13,18 +13,40 @@
                 });
                 return false;
             };
+			function CollapseExpand(index)
+			{
+				var content = document.getElementById("text"+index);
+				var button = document.getElementById("button"+index);
+				if(button.value == "+")
+				{
+					button.value = "-";
+					content.style.display='';
+				}
+				else
+				{
+					button.value = "+";
+					content.style.display='none';
+				}
+			}
         </script>
     </head>
     <body>
         <div>
             <a href="#" onclick="return openBookmark()">Bookmark</a>
-			<script type="text/javascript" src="../js/utils.js" ></script>
-			<script>
-				for (var i = 0; i < localStorage.length; i++) {
-					var obj = JSON.parse(localStorage[i]);
-					document.writeln("<a href = \"" + obj.url + "\" target=\"_blank\">" + obj.title + "</a></br>");
-				}
-			</script>
+			<table width="400px">
+					<script>
+						for (var i = 0; i < localStorage.length; i++) {
+							var obj = JSON.parse(localStorage[i]);
+							var title = obj.title;
+							if(obj.title.length > 50)
+							{
+								title = title.substr(0,50)+"...";
+							}
+							document.writeln("<tr><td><input style='width: 23px' type='button' value='+' onClick='CollapseExpand("+i+")' id='button"+i+"'></input>   <a href = \"" + obj.url + "\" target=\"_blank\" title="+ obj.title + ">" + title + "</a></td></tr>");	
+							document.writeln("<tr id='text"+i+"' style='display:none'><td><a>" + obj.selectionText + "</a></td></tr>");
+						}
+					</script>
+			</table>
         </div>
     </body>
 </html>
