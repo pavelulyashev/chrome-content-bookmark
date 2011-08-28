@@ -2,37 +2,6 @@
 	<head>
 	</head>
 	<body>
-		<script>
-        function clickHandler(info, tab) {
-        	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
-        		localStorage[localStorage.length] = JSON.stringify({
-					url: info.pageUrl,
-					rangeInfo: response.rangeInfo,
-					selectionText: info.selectionText,
-					title: tab.title
-				});
-				setIconText(localStorage.length);
-            });
-        };
-
-		function setIconText(num) {
-			chrome.browserAction.setBadgeBackgroundColor({"color": [0, 255, 0, 255]}); 
-			chrome.browserAction.setBadgeText({ 
-				"text": '' + num
-			}); 
-		};
-        /**
-         * Create a context menu which will only show up for selections.
-         */
-        chrome.contextMenus.create({
-            "title" : "Create content bookmark",
-            "type" : "normal",
-            "contexts" : ["selection"],
-            "onclick" : clickHandler
-        });
-
-		setIconText(localStorage.length);
-
-		</script>
+	    <script type="text/javascript" src="../js/context_menu.js"></script>
 	</body>
 </html>

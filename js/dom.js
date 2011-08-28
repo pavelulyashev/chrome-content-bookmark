@@ -23,17 +23,16 @@ var highlight = function(rng, color) {
 };
 
 var actions = {
-	getSelectionInfo: function() {
+	getSelectionInfo: function(request) {
         var rng = window.getSelection().getRangeAt(0);
-        highlight(rng, 'yellow');
         return {rangeInfo: range.stringify(rng)};
     },
     highlightSelection: function(request) {
-        var rng = range.parse(request.rangeInfo);
-        console.log(rng);
-
-        highlight(rng, 'yellow');    
-    }
+    	$(document).ready(function() {
+            var rng = range.parse(request.rangeInfo);
+            highlight(rng, 'yellow');
+        });
+    },
 };
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
