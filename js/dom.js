@@ -2,6 +2,8 @@
 var actions = {
 	getSelectionInfo: function() {
         var selection = window.getSelection();
+        var rng = selection.getRangeAt(0);
+        console.log(path.build(rng.startContainer));
         // returns JSON string with info about selection
     }
 };
