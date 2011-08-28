@@ -17,13 +17,13 @@
     </head>
     <body>
         <div>
+            <a href="#" onclick="return openBookmark()">Bookmark</a>
 			<script type="text/javascript" src="../js/utils.js" ></script>
 			<script>
-				setIconText(localStorage.length);
 				for (var i = 0; i < localStorage.length; i++) {
-					document.writeln("<p>" + i + " = " + localStorage[i] + "</p>");
+					var obj = JSON.parse(localStorage[i]);
+					document.writeln("<a href = \"" + obj.url + "\" target=\"_blank\">" + obj.title + "</a></br>");
 				}
-
 			</script>
         </div>
     </body>

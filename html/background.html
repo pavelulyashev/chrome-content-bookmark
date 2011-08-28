@@ -7,11 +7,19 @@
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
         		localStorage[localStorage.length] = JSON.stringify({
 					url: info.pageUrl,
-					selection: response.rangeInfo
+					selection: response.rangeInfo,
+					title: tab.title
 				});
+				setIconText(localStorage.length);
             });
         };
 
+		function setIconText(num) {
+			chrome.browserAction.setBadgeBackgroundColor({"color": [0, 255, 0, 255]}); 
+			chrome.browserAction.setBadgeText({ 
+				"text": ''+num
+			}); 
+		};
         /**
          * Create a context menu which will only show up for selections.
          */
@@ -21,6 +29,9 @@
             "contexts" : ["selection"],
             "onclick" : clickHandler
         });
+
+		setIconText(localStorage.length);
+
 		</script>
 	</body>
 </html>
