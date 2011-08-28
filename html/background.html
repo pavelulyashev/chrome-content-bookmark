@@ -3,24 +3,15 @@
 	</head>
 	<body>
 		<script>
-        /**
-         * Returns a handler which will show an alert with information about click.
-         */
         function clickHandler(info, tab) {
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
         		localStorage[localStorage.length] = JSON.stringify({
 					url: info.pageUrl,
-					title: tab.title,
-					selection: response
+					selection: response.rangeInfo,
+					title: tab.title
 				});
 				setIconText(localStorage.length);
             });
-        	/*
-            alert("Content bookmark saved!!!\n"
-                    + "URL: " + info.pageUrl + "\n"
-                    + "Selected text: " + info.selectionText
-            );
-            */
         };
 
 		function setIconText(num) {
@@ -29,7 +20,6 @@
 				"text": ''+num
 			}); 
 		};
-
         /**
          * Create a context menu which will only show up for selections.
          */

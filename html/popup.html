@@ -2,9 +2,22 @@
 
 <html>
     <head>
+        <script>
+            var openBookmark = function() {
+                var rangeInfo = localStorage.getItem('content_bookmark');
+                chrome.tabs.getSelected(null, function(tab) {
+                    chrome.tabs.sendRequest(tab.id, {
+                        action: 'highlightSelection',
+                        rangeInfo: rangeInfo
+                    });
+                });
+                return false;
+            };
+        </script>
     </head>
     <body>
         <div>
+            <a href="#" onclick="return openBookmark()">Bookmark</a>
 			<script type="text/javascript" src="../js/utils.js" ></script>
 			<script>
 				for (var i = 0; i < localStorage.length; i++) {
