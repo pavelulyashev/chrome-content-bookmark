@@ -7,7 +7,7 @@
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
         		localStorage[localStorage.length] = JSON.stringify({
 					url: info.pageUrl,
-					selection: response.rangeInfo,
+					rangeInfo: response.rangeInfo,
 					selectionText: info.selectionText,
 					title: tab.title
 				});

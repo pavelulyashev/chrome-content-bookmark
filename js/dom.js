@@ -25,17 +25,14 @@ var highlight = function(rng, color) {
 var actions = {
 	getSelectionInfo: function() {
         var rng = window.getSelection().getRangeAt(0);
-        console.log(range.stringify(rng));
+        highlight(rng, 'yellow');
         return {rangeInfo: range.stringify(rng)};
     },
     highlightSelection: function(request) {
-    	$(document).ready(function() {
-    	    alert(request.rangeInfo);
-            var rng = range.parse(request.rangeInfo);
-            console.log(rng);
+        var rng = range.parse(request.rangeInfo);
+        console.log(rng);
 
-            highlight(rng, 'yellow');    
-        });
+        highlight(rng, 'yellow');    
     }
 };
 
