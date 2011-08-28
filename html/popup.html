@@ -5,6 +5,17 @@
     </head>
     <body>
         <div>
+			<script type="text/javascript" src="../js/utils.js" ></script>
+			<script>
+				localStorage.clear();
+				localStorage["0"] = "sdg";
+				localStorage["1"] = "sgd";
+				setIconText(localStorage.length);
+				for (var i = 0; i < localStorage.length; i++) {
+					document.writeln("<p>" + i + " = " + localStorage[i] + "</p>");
+				}
+
+			</script>
             Bookmarks tree
         </div>
     </body>
