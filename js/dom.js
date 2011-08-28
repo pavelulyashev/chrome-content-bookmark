@@ -1,35 +1,27 @@
 (function() {
-var highlight = function(rng, color) {
-    var siblings = rng.commonAncestorContainer.childNodes;
-    $(siblings).css('background-color', 'yellow');
-/*
-    var inside = false;
-    for (var i = 0; i < siblings.length; i++) {
-        var sibling = siblings[i];
-        if (sibling === rng.startContainer) {
-            var sibling = rng.startContainer;
-            var span = document.createElement('span');
-            var rStart = document.createRange();
-            rStart.setStart(sibling, rng.startOffset);
-            rStart.setEnd(sibling, sibling.nodeValue.length);
-            span.style.backgroundColor = color;
-            rStart.surroundContents(span);
-            inside = true;
-        } else if (sibling === rng.endContainer) {
-            sibling = rng.endContainer;
-            var span = document.createElement('span');
-            var rEnd = document.createRange();
-            rEnd.setStart(sibling, 0);
-            rEnd.setEnd(sibling, rng.endOffset);
-            span.style.backgroundColor = color;
-            rEnd.surroundContents(span);
-            inside = false;
-        } else if (inside) {
-            sibling.style.backgroundColor = color;
-        }    
-    }
-*/
+var surround = function(color, node, startOffset, endOffset) {
+	console.log(node);
+    var span = document.createElement('span');
+    var r = document.createRange();
+
+    if (startOffset === undefined)
+    	r.setStartBefore(node);
+    else
+        r.setStart(node, startOffset);
+
+    if (endOffset === undefined)
+    	r.setEndAfter(node);
+    else 
+        r.setEnd(node, endOffset);
+    span.style.backgroundColor = color;
+    r.surroundContents(span);
 };
+
+var highlight = function(rng, color) {
+    surround(color, rng.startContainer, rng.startOffset);
+    surround(color, rng.endContainer, undefined, rng.endOffset);
+};
+
 var actions = {
 	getSelectionInfo: function() {
         var rng = window.getSelection().getRangeAt(0);
