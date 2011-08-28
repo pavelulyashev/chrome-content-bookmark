@@ -28,6 +28,15 @@
 					content.style.display='none';
 				}
 			}
+			
+			function ClearStorage()
+			{
+				localStorage.clear()
+				 chrome.browserAction.setBadgeText({ 
+					"text": '0'
+				}); 
+				history.go(0);
+			}
         </script>
     </head>
     <body>
@@ -38,15 +47,16 @@
 						for (var i = 0; i < localStorage.length; i++) {
 							var obj = JSON.parse(localStorage[i]);
 							var title = obj.title;
-							if(obj.title.length > 50)
+							if(obj.title.length > 40)
 							{
-								title = title.substr(0,50)+"...";
+								title = title.substr(0,40)+"...";
 							}
 							document.writeln("<tr><td><input style='width: 23px' type='button' value='+' onClick='CollapseExpand("+i+")' id='button"+i+"'></input>   <a href = \"" + obj.url + "\" target=\"_blank\" title="+ obj.title + ">" + title + "</a></td></tr>");	
 							document.writeln("<tr id='text"+i+"' style='display:none'><td><a>" + obj.selectionText + "</a></td></tr>");
 						}
 					</script>
 			</table>
+			<input type='button' value='clear!' onClick='ClearStorage()'></input>
         </div>
     </body>
 </html>
