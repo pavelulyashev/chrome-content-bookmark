@@ -4,11 +4,13 @@
 	<body>
 		<script>
         /**
-        * Returns a handler which will show an alert with information about click.
-        */
+         * Returns a handler which will show an alert with information about click.
+         */
+
         function clickHandler(info, tab) {
         	chrome.tabs.sendRequest(tab.id, {action: 'getSelectionInfo'}, function(response) {
-        		// response.selectionInfo contains info about current selection
+        		localStorage.setItem('content_bookmark', response.rangeInfo);
+                alert(localStorage.getItem('content_bookmark'));
             });
         	/*
             alert("Content bookmark saved!!!\n"

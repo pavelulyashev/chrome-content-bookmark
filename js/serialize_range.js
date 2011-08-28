@@ -20,7 +20,7 @@ var path = {
         var destElement = document.querySelector(pathArray[0]);
 
         for (var i = 1; i < pathArray.length; i++) {
-            var index = parseInt(i);
+            var index = parseInt(pathArray[i]);
             destElement = destElement.childNodes[index];
         }
         return destElement;
@@ -43,10 +43,10 @@ var range = {
     parse: function(source) {
         var rangeInfo = JSON.parse(source);
         var rng = document.createRange();
-        rng.setStart(path.parse(rngInfo.startContainer),
-                     rngInfo.startOffset);
-        rng.setEnd(path.parse(rngInfo.endContainer),
-                   rngInfo.endOffset);
+        rng.setStart(path.parse(rangeInfo.startContainer),
+                     rangeInfo.startOffset);
+        rng.setEnd(path.parse(rangeInfo.endContainer),
+                   rangeInfo.endOffset);
         return rng;
     }
 };
