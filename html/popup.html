@@ -38,12 +38,12 @@
 				chrome.browserAction.setBadgeText({ 
 					"text": '0'
 				}); 
-				//history.go(0);
+				history.go(0);
 			}
         </script>
     </head>
     <body>
-        <script>
+        <!--script>
             var toWrite = ['<ul id="links_list" style="width: 400px">'];
             for (var i = 0; i < localStorage.length; i++) {
                 var obj = JSON.parse(localStorage[i]);
@@ -58,8 +58,8 @@
             }
             toWrite.push('</ul>');
             document.writeln(toWrite.join(''));
-        </script>
-        <!--table width="400px">
+        </script-->
+        <table width="400px">
                 <script>
                     for (var i = 0; i < localStorage.length; i++) {
                         var obj = JSON.parse(localStorage[i]);
@@ -68,11 +68,11 @@
                         {
                             title = title.substr(0,40)+"...";
                         }
-                        document.writeln("<tr><td><input style='width: 23px' type='button' value='+' onClick='CollapseExpand("+i+")' id='button"+i+"'></input>   <a href = \"" + obj.url + "\" target=\"_blank\" title="+ obj.title + ">" + title + "</a></td></tr>");	
+                        document.writeln("<tr><td><input style='width: 23px' type='button' value='+' onClick='CollapseExpand("+i+")' id='button"+i+"'></input>   <a href = \"" + obj.url + "\" target=\"_blank\" onclick=\"return openBookmark(" + i + ");\" title="+ obj.title + ">" + title + "</a></td></tr>");	
                         document.writeln("<tr id='text"+i+"' style='display:none'><td><a>" + obj.selectionText + "</a></td></tr>");
                     }
                 </script>
-        </table-->
+        </table>
         <input type='button' value='clear!' onClick='clearStorage()'></input>
     </body>
 </html>
