@@ -1,23 +1,27 @@
+(function() {
 /*
  * Serialize path to element
  */
-var path = {
-    build: function(element) {
-        if (element.id)
-            return '#' + element.id;
-        if (element === document.body)
-            return 'body';
+var indexOf = Array.prototype.indexOf;
 
+window.DomPath = {
+    build: function(element, ancestor) {
+    	if (element === ancestor)
+    		return ['ancestor'];
+    	if (!ancestor && element.id)
+    		return ['#' + element.id];
+        if (element === document.body)
+            return ['body'];
+
+        var result = DomPath.build(element.parentNode, ancestor); 
         var siblings = element.parentNode.childNodes;
-        for (var i = 0; i < siblings.length; i++) {
-            var sibling = siblings[i];
-            if (element === sibling)
-                return [path.build(element.parentNode), i].join(' ')
-        }    
+        result.push(indexOf.call(siblings, element));
+        return result;
     },
-    parse: function(source) {
-        var pathArray = source.split(' ');
-        var destElement = document.querySelector(pathArray[0]);
+    parse: function(pathArray, ancestor) {
+        var destElement = pathArray[0] !== 'ancestor' ?
+                          document.querySelector(pathArray[0]) :
+                          ancestor;
 
         for (var i = 1; i < pathArray.length; i++) {
             var index = parseInt(pathArray[i]);
@@ -27,26 +31,30 @@ var path = {
     }
 };
 
+
 /*
  * Serialize info about range object
  */
-var range = {
-    stringify: function(rng) {
+window.DomRange = {
+	serialize: function(range) {
         var rangeInfo = {
-            startContainer: path.build(rng.startContainer),
-            startOffset: rng.startOffset,
-            endContainer: path.build(rng.endContainer),
-            endOffset: rng.endOffset
+            startContainer: DomPath.build(range.startContainer),
+            startOffset: range.startOffset,
+            endContainer: DomPath.build(range.endContainer),
+            endOffset: range.endOffset
         };
         return JSON.stringify(rangeInfo);
     },
     parse: function(source) {
         var rangeInfo = JSON.parse(source);
-        var rng = document.createRange();
-        rng.setStart(path.parse(rangeInfo.startContainer),
-                     rangeInfo.startOffset);
-        rng.setEnd(path.parse(rangeInfo.endContainer),
-                   rangeInfo.endOffset);
-        return rng;
+        var range = document.createRange();
+        var startContainer = DomPath.parse(rangeInfo.startContainer);
+        var endContainer = DomPath.parse(rangeInfo.endContainer);
+
+        range.setStart(startContainer, rangeInfo.startOffset);
+        range.setEnd(endContainer, rangeInfo.endOffset);
+        return range;
     }
 };
+
+})();
